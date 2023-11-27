@@ -1,0 +1,111 @@
+{% extends 'cryptoapp/base.html' %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cryptoapp</title>
+    {% block css_style %}
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="{% static 'cryptoapp/history.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'cryptoapp/history.css' %}" />
+
+    {% endblock %}
+    <!-- Add this to your base.html template -->
+
+
+</head>
+<body style="background-color: rgb(234, 231, 231);">
+{% block content %}
+{#    {% include 'cryptoapp/navbar.html' %}#}
+<div class="payment-history">
+
+<h2 class="title">Payment History</h2>
+<table id="example">
+	<thead>
+		<tr>
+			<th style="border: 1px solid grey;">Timestamp</th>
+			<th style="border: 1px solid grey;">Currency</th>
+            <th style="border: 1px solid grey;">Payment Method</th>
+			<th style="border: 1px solid grey;">Transaction Type</th>
+            <th style="border: 1px solid grey;">Amount From</th>
+            <th style="border: 1px solid grey;">Amount To</th>
+			<th style="border: 1px solid grey;">Balance After Transaction</th>
+			<th style="border: 1px solid grey;">Action</th>
+		</tr>
+	</thead>
+	<tbody>
+    {% if payments %}
+        {% for payment in payments %}
+        {% if payment.transaction_type == 'purchased' %}
+		<tr style="background-color: #ffe6e6; color: darkred;">
+        {% else %}
+		<tr style="background-color: white; color: darkgreen;">
+        {% endif %}
+			<td>{{ payment.timestamp }}</td>
+			<td>{{ payment.currency_to}}</td>
+            <td>
+                {% if payment.payment_method == 'wallet' %}
+                    Wallet
+                {% else %}
+                    Card
+                {% endif %}
+            </td>
+			<td>
+                {% if payment.transaction_type == 'purchased' %}
+                    Purchased
+                {% else %}
+                    Sold
+                {% endif %}
+            </td>
+            <td>{{ payment.amount_from }}</td>
+            <td>{{ payment.amount_to }}</td>
+            <td>
+                {% if payment.payment_method == 'card' %}
+                    {% if payment.balance_after_transaction == 0.00 %}
+                        NA
+                    {% endif %}
+                {% else %}
+                    {{ payment.balance_after_transaction }}
+                {% endif %}
+            </td>
+			<td>
+            {% if payment.payment_method == 'wallet' %}
+                {% if payment.sold != True %}
+                    <a href="{% url 'cryptoapp:update_balance' transaction_id=payment.id %}" >
+                        <button type="button" class="btn btn-primary btn-xs" style="margin:10px;">
+                            <i class="icon icon-wallet"></i> Sell
+                        </button>
+                    </a>
+                {% endif %}
+            {% endif %}
+                <a href="{% url 'cryptoapp:delete_object' pk=payment.id %}" >
+				<button type="button" class="btn btn-danger btn-xs dt-delete" style="margin:10px;">
+                    <!-- Replace glyphicon-star with fa-star -->
+                <i class="icon icon-trash"></i> Delete
+                </button>
+                </a>
+			</td>
+		</tr>
+
+        {% endfor %}
+    {% else %}
+        <p style="text-align: center;margin: auto"><strong>No history available!</strong></p>
+    {% endif %}
+	</tbody>
+</table>
+
+<!-- Add this before the closing </body> tag in your base.html template -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+{% endblock %}
+
+</div>
+{#{% include 'cryptoapp/footer.html' %}#}
+</body>
+</html>

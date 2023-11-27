@@ -1,0 +1,31 @@
+{% load static %}
+
+<div class="nav-container">
+    <nav class="nav-body">
+        <div class="nav-title">
+            <div class="nav-logo">
+                 <link rel="stylesheet" href="{% static 'cryptoapp/navbar.css' %}">
+
+                <a href="{% url 'cryptoapp:homepage' %}">COMP8347 Cryptostore</a>
+            </div>
+        </div>
+
+        <div class="">
+            <div class="nav-title">
+                <p class="nav-p">{{ user.first_name }}</p>
+                <ul class="nav-p">
+                    {% if user.is_authenticated %}
+                        <!-- Display user-specific links when logged in -->
+                        <li><a href="{% url 'cryptoapp:user_dashboard' %}">Profile</a></li>
+                         <li><a href="{% url 'cryptoapp:payment_history' %}">Payment History</a></li>
+                        <li><a href="{% url 'cryptoapp:logout_view' %}">Logout</a></li>
+                    {% else %}
+                        <!-- Display login and signup links when not logged in -->
+                        <li><a href="{% url 'cryptoapp:login_view' %}">Login</a></li>
+                        <li><a href="{% url 'cryptoapp:register'%}">Signup</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>

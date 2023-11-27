@@ -1,0 +1,26 @@
+{% block carousal %}
+    <div id="carousel" class="owl-carousel">
+        {% for currency in currency %}
+            <div class="item">
+                <div class="carousal-g">
+{#                    <div class="">#}
+{#                        <img src="https://www.gemini.com/images/currencies/icons/default/btc.svg" alt=""#}
+{#                             class="carousal-img" srcset=""/>#}
+{#                    </div>#}
+
+                    <div class="">
+                        <img src="{{ currency.link }}" alt="{{ currency.name }}"
+                             class="carousal-img" srcset=""/>
+                    </div>
+
+                    <div class="carousal-txt">
+{#                        <h1>Bitcoin</h1>#}
+                                            <h1>{{ currency.name }}</h1>
+{#                        <p>BTC</p>#}
+                                            <p>{{ currency.symbol }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

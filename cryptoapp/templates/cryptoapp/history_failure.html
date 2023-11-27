@@ -1,0 +1,31 @@
+{% load static %}
+<html lang="">
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
+    <script src="{% static 'cryptoapp/failure.css' %}"></script>
+      <title></title>
+  </head>
+<body>
+<div class="card">
+
+<div class="funds-success-message-container">
+  <div class="funds-checkmark-text-container">
+        <div class="o-circle c-container__circle o-circle__sign--failure">
+    <div class="o-circle__sign"></div>
+  </div>
+  </div>
+
+  <div class="funds-success-message">
+
+    <h2>Oops! Transaction failed!</h2>
+    <p>Please check your wallet balance before proceeding further</p>
+  </div>
+</div>
+        <div>
+        <a href="/payment_history/"><button id="button">Continue</button></a>
+    </div>
+
+</div>
+
+    </body>
+</html>

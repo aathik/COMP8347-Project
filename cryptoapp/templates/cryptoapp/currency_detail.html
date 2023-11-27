@@ -1,0 +1,151 @@
+{% extends 'cryptoapp/base.html' %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <!--
+    Author: Peiyi Ding
+    作者： 丁沛奕
+    Created by Ar4hur7TI on 2023-11-07
+    -->
+
+    {% block css_style%}
+        <meta charset="UTF-8">
+    <title>{{ currency.name }}</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{% static 'cryptoapp/CSS/currency_detail.css' %}">
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+<div class="show_board">
+    <div class="main_board">
+{#        <img src="{% static 'img/'|add:currency.symbol|add:'.svg' %}" alt="{{ currency.symbol }}">#}
+         <img src="{{ currency.link }}" alt="{{ currency.symbol }}" class="rounded-full"
+                                         srcset=""/>
+        <h1>{{ currency.name }}</h1>
+        <h2>$: {{ currency.price }}</h2>
+        <div class="container">
+            <div id="exchangeRateChartContainer">
+                <canvas id="exchangeRateChart"></canvas>
+            </div>
+        </div>
+{#        <div>#}
+{#            <h1>My {{ currency.name }} ({{ currency.symbol }})</h1>#}
+{#            <div id="wallet_show">#}
+{#                <div id="quantity">#}
+{#                    <p class="title">Quantity</p>#}
+{#                    <p class="value">{{ quantity.amount }} {{ currency.symbol }}</p>#}
+{#                </div>#}
+{#                <div id="notional_value">#}
+{#                    <p class="title">Notional value</p>#}
+{#                    <p class="value">{{ notional_value }} CAD</p>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+    </div>
+    <div class="sub_board">
+        <div id="trading">
+            <h1>Make a trade</h1>
+            <div style="display: flex;flex-direction: row;">
+                <button id="button1">Convert</button>
+                <button id="button2">Buy</button>
+            </div>
+            <div id="parentDiv">
+                <div id="childDiv1">
+                    <form method="post" id="form2">
+                        {% csrf_token %}
+                        <h2>For {{ form2.crypto_amount }} {{ currency.symbol }}</h2>
+                        <h2>You will get {{ ans }} {{ form2.crypto_to }}</h2>
+                        <div id="instant-action">
+                            <button id="instant-button" type="submit" name="convert">Convert
+                                <span id="instant-span">
+                    <svg width="30" height="30" viewBox="0 0 30 30">
+                        <path d="M10 7 L20 15 L10 23" stroke="black" stroke-width="2" fill="none"/>
+                    </svg>
+                    </span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div id="childDiv2" style="display: none">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div id="text"><p>Amount</p></div>
+                        <div id="amount_box">
+                            <p id="dollar">$</p>
+                            <div id="input-amount"> {{ form1.amount }}</div>
+                            <p id="money-type">CAD</p>
+                        </div>
+                        <div id="instant-action">
+                            <button id="instant-button" type="submit" name="jump">Buy
+                                <span id="instant-span">
+                    <svg width="30" height="30" viewBox="0 0 30 30">
+                        <path d="M10 7 L20 15 L10 23" stroke="black" stroke-width="2" fill="none"/>
+                    </svg>
+                    </span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="others_cryptos">
+            <h1>Browse other cryptos</h1>
+            <div>
+                {% for currency in all_currency %}
+                    <div id="crypto_list_outer">
+                        <div id="crypto_list">
+                            <img src="{{ currency.link }}" alt="{{ currency.name }}" class="rounded-full"
+                                         srcset="" class="currency-img"/>
+                            <div class="currency-info">
+                                <div>{{ currency.name }}</div>
+                                <div style="color: #A9A9A9">{{ currency.symbol }}</div>
+                            </div>
+                        </div>
+                        <div id="crypto_list_price">
+                            <p>$ {{ currency.price }} CAD</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    const exchangeRatesData = JSON.parse('{{ exchange_rates|safe }}');
+
+    function setAmount(value) {
+        document.getElementById('amount').value = value;
+    }
+
+    function checkAmount() {
+        alert('Success');
+    }
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const childDiv1 = document.getElementById('childDiv1');
+        const childDiv2 = document.getElementById('childDiv2');
+        const button1 = document.getElementById('button1');
+        const button2 = document.getElementById('button2');
+
+        button1.addEventListener('click', function () {
+            childDiv1.style.display = 'block';
+            childDiv2.style.display = 'none';
+        });
+
+        button2.addEventListener('click', function () {
+            childDiv1.style.display = 'none';
+            childDiv2.style.display = 'block';
+        });
+    });
+
+</script>
+<script src="{% static 'cryptoapp/JS/his_data.js' %}"></script>
+<script src="{% static 'cryptoapp/JS/amount_set.js' %}"></script>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,116 @@
+{% extends 'cryptoapp/base.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>User Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .user-dashboard-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        h1, h2 {
+            margin-bottom: 10px;
+            text-align: center;
+            color: #333;
+        }
+
+        .user-details {
+            margin-bottom: 20px;
+        }
+
+        .user-details p {
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .user-details p:hover {
+            color: #c074a0;
+        }
+
+        .button-like {
+            background-color: #9a5e85;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-like:hover {
+            background-color: #c074a0;
+        }
+
+        .logout-link {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #c074a0;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .logout-link:hover {
+            color: #c074a0;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="bg-black text-white py-4 text-center">
+        <h1 class="text-3xl font-bold text-cyan-400">Uwin Crypto</h1>
+        <!-- Move the Logout link outside of the header -->
+    </header>
+
+    <section class="user-dashboard-container user-dashboard p-4">
+        <!-- Add the Logout link in the top right corner -->
+
+
+        <h2 class="text-2xl">User Dashboard</h2>
+
+        <!-- Display user details here with hover effect -->
+       <div class="user-details">
+            <div class="text-center">
+           {% if user.photo %}
+        <p class="text-black">Profile Picture:</p>
+        <img src="{{ user.photo.url }}" alt="Profile Picture" class="prod-size mx-auto w-24 h-24 rounded-full">
+    {% else %}
+        <p class="text-black">Profile Picture:</p>
+        <img src="{% static 'images/default_profile_picture.png' %}" alt="Default Profile Picture" class="prod-size mx-auto w-24 h-24 rounded-full">
+    {% endif %}
+        </div>
+    <p class="text-black">Username: {{ user.username }}</p>
+    <p class="text-black">Mobile Number: {{ user.mobile_number }}</p>
+    <p class="text-black">Gender: {{ user.gender }}</p>
+    <p class="text-black">Email: {{ user.email }}</p>
+    <p class="text-black">First Name: {{ user.first_name }}</p>
+    <p class="text-black">Last Name: {{ user.last_name }}</p>
+    <!-- Add other fields as needed -->
+
+       </div>
+
+        <!-- Add other details as needed -->
+
+        <!-- Add a link to the edit page with button-like styling -->
+        <a href="{% url 'cryptoapp:edit_info' %}" class="button-like">Edit Info</a>
+    </section>
+</body>
+</html>
+{% endblock %}
+

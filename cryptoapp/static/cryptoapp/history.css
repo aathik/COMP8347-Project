@@ -1,0 +1,70 @@
+.payment-history .title{
+    color: mediumvioletred;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.payment-history body {
+
+    background-color: rgb(234, 231, 231);
+
+    /*font-family: "Calibri", "sans-serif";*/
+}
+
+.payment-history{
+    margin:2em;
+    /*background-color: rgb(234, 231, 231);*/
+}
+
+.payment-history table {
+  margin: 25px 0;
+  min-width: 400px;
+  border-radius: 8px 8px;
+  overflow: hidden;
+  box-shadow: 12px 12px 20px 10px rgba(0, 0, 0, 0.15);
+}
+
+.payment-history table.dataTable {
+  border-collapse: collapse;
+}
+
+.payment-history tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.payment-history thead tr{
+  background-color: #171a17;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.payment-history tr{
+  border-bottom: 4px solid #dddddd;
+  transition: 0.3s;
+  font-size: 18px;
+  box-shadow: 1px 3px 3px rgb(17, 8, 8);
+}
+
+.payment-history th {
+    text-align: left;
+    padding: 12px 5px;
+  }
+
+.payment-history tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+.payment-history tbody tr:last-of-type {
+  border-bottom: 3px solid #0b0c0c;
+}
+
+.payment-history tr:hover{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.payment-history .btn{
+    box-shadow: 1px 3px 3px rgb(17, 8, 8);
+}

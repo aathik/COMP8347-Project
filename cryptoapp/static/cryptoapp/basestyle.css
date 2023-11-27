@@ -1,0 +1,52 @@
+/* Reset default styles */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat', Arial, sans-serif; /* Use Montserrat as the primary font */
+    background-color: #1e7ebb; /* White background */
+    color: #000; /* Black text */
+}
+
+header {
+    background-color: #000; /* Black header background */
+    color: #fff; /* White text */
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.user-info {
+    padding: 20px;
+}
+
+/* User profile photo */
+img {
+    max-width: 150px;
+    max-height: 150px;
+    border: 3px solid #000; /* Black border */
+    border-radius: 50%;
+}
+
+/* Links and Buttons */
+a {
+    color: #000; /* Black links */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #333; /* Dark gray on hover */
+}

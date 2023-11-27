@@ -1,0 +1,32 @@
+{% block plot %}
+    <div class="plot-w">
+    <div id="bitcoin-chart"></div>
+    </div>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script>
+        var data = [{
+            x: [{% for entry in data %}"{{ entry.timestamp }}",{% endfor %}],
+            y: [{% for entry in data %}{{ entry.price }}, {% endfor %}],
+            type: 'scatter',
+            mode: 'lines',
+            name: 'Bitcoin Price'
+        }];
+
+        var layout = {
+            title: 'Bitcoin Price Time Series',
+            xaxis: {
+                title: 'Timestamp'
+            },
+            yaxis: {
+                title: 'Price'
+            }
+        };
+        var config = {
+            modeBarButtonsToRemove: ['toggleSpikelines', 'zoomIn2d', 'zoomOut2d', 'sendDataToCloud', 'zoom2d', 'pan2d', 'select2d', 'lasso2d', 'autoScale2d', 'resetScale2d', 'hoverClosestCartesian', 'hoverCompareCartesian'],
+            displaylogo: false
+        };
+
+        Plotly.newPlot('bitcoin-chart', data, layout, config);
+    </script>
+{% endblock %}

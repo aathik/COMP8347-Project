@@ -1,0 +1,115 @@
+{% extends 'cryptoapp/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+    <div class="plotlyChart">
+        {% include 'cryptoapp/bitcoin_chart.html' %}
+    </div>
+    <div class="container">
+        <div class="inner-container">
+            <div>
+                <div class="owl-chart">
+                    {% include 'cryptoapp/carousal.html' with currency=currency %}
+                </div>
+
+            </div>
+            <div class="content-container">
+                <h2 class="content-heading">Cryptocurrency Prices</h2>
+                <div class="table-container">
+                    <div class="table-row">
+                        <div class="table-header">
+                            <span>Name</span>
+                        </div>
+                        <div class="table-header-2">
+                            <span>Price</span>
+                        </div>
+                        <div class="table-header-2">
+                            <span>24h Change</span>
+                        </div>
+                        <div class="table-header-2">
+                            <span>% Change</span>
+                        </div>
+                        <div class="table-header-2">
+                            <span>Market Cap</span>
+                        </div>
+                    </div>
+
+                    {% for currency in currency %}
+                        <div class="table-row">
+                            <div class="table-header">
+                            <span>
+
+                              <a class="currency-link" href="{% url 'cryptoapp:currency_detail' name=currency.name %}">
+{#                                <div class="currency-logo">#}
+{#                                  <img src="https://www.gemini.com/images/currencies/icons/default/btc.svg" alt="" class="rounded-full"#}
+{#                                       srcset=""/>#}
+{#                                </div>#}
+                                  <div class="currency-logo">
+                                    <img src="{{ currency.link }}" alt="{{ currency.name }}" class="rounded-full"
+                                         srcset=""/>
+                                  </div>
+                                <div class="currency-info-container">
+{#                                  <h5 class="currency-name">Bitcoin <span>BTC</span> </h5>#}
+                                    <h5 class="currency-name">{{ currency.name }} <span>{{ currency.symbol }}</span></h5>
+                                </div>
+                              </a>
+                            </span>
+                            </div>
+                            <div class="currency-info">
+{#                                <h5>$35,759.00</h5>#}
+                                                            <h5>{{ currency.price }}</h5>
+{##}
+{#                                <h5>$464.70</h5>#}
+                                                            <h5>{{ currency.trend }}</h5>
+{##}
+{#                                <h5>1.27%</h5>#}
+                                                            <h5>{{ currency.trend_rate }}</h5>
+{##}
+{#                                <h5>--</h5>#}
+                                                            <h5>{{ currency.market_cap }}</h5>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        jQuery("#carousel").owlCarousel({
+            autoplay: true,
+            rewind: true, /* use rewind if you don't want loop */
+            margin: 20,
+            /*
+           animateOut: 'fadeOut',
+           animateIn: 'fadeIn',
+           */
+            {#responsiveClass: true,#}
+            autoHeight: true,
+            autoplayTimeout: 7000,
+            smartSpeed: 800,
+            nav: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+
+                600: {
+                    items: 1
+                },
+
+                1024: {
+                    items: 2
+                },
+
+                1366: {
+                    items: 2
+                }
+            }
+        });
+    </script>
+
+{% endblock %}

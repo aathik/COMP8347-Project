@@ -1,0 +1,80 @@
+{% extends 'cryptoapp/base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Edit Info</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .edit-info-form {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            margin-bottom: 10px;
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #3490dc;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2779bd;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="bg-black text-white py-4 text-center">
+        <h1 class="text-3xl font-bold">Uwin Crypto</h1>
+    </header>
+
+    <section class="edit-info-form">
+        <h2 class="text-2xl">Edit Info</h2>
+        <form method="post" action="{% url 'cryptoapp:edit_info' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit">Save</button>
+        </form>
+        <a href="{% url 'cryptoapp:delete_account' %}" class="text-blue-500 block text-center mt-4">Delete Account</a>
+    </section>
+</body>
+</html>
+{% endblock %}

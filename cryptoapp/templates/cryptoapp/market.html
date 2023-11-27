@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+    Author: Peiyi Ding
+    作者： 丁沛奕
+    Created by Ar4hur7TI on 2023-11-05
+    -->
+    <meta charset="UTF-8">
+    <title>Market</title>
+    <link rel="stylesheet" href="{% static 'cryptoapp/CSS/market.css' %}">
+</head>
+<body>
+<div class="navigation"></div>
+<div class="show_board">
+    <div class="flag">
+        <div class="signboard">
+            {% block signboard %}Market{% endblock %}
+        </div>
+        <div class="search_box">
+            {% block search_box %}
+                <span class="search-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24">
+                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">?</path>
+            </svg>
+        </span>
+                <input type="search" placeholder="Search...">
+            {% endblock %}
+        </div>
+    </div>
+    <div class="dashboard">
+        {% block content %}
+            <table>
+                <thead>
+                <tr>
+                    <th>Currency Name</th>
+                    <th>Price</th>
+                    <th>24hr Change</th>
+                    <th>% Change</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for currency in currencies %}
+                    <tr>
+                        <td>
+                            <div class="currency-layout">
+                                <img src="{% static 'img/'|add:currency.symbol|add:'.svg' %}"
+                                     alt="{{ currency.symbol }}" class="currency-img">
+                                <div class="currency-info">
+                                    <div>{{ currency.name }}</div>
+                                    <div style="color: #A9A9A9">{{ currency.code }}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{ currency.current_price }}</td>
+                        <td>{{ currency.change_24h }}</td>
+                        <td>{{ currency.percent_change }}</td>
+                        <td class="button-cell">
+                            <a href="{% url 'cryptoapp:currency_detail' name=currency.name %}">
+                                <button class="button">View details</button>
+                            </a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="4">No currencies found.</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endblock %}
+    </div>
+</div>
+</body>
+</html>

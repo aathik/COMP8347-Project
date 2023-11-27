@@ -1,0 +1,147 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navigation {
+    background: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.show_board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+}
+
+.flag {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+}
+
+.signboard {
+    color: #333;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 44px;
+}
+
+.dashboard {
+    padding: 20px;
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+table th, table td {
+    border-bottom: 1px solid #ddd;
+}
+
+td, th {
+    text-align: left;
+    padding: 8px;
+}
+
+.button {
+    display: inline-block;
+    padding: 8px 16px;
+    margin-right: 8px;
+    background-color: #C0C0C0;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.button-cell {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.button:hover {
+    background-color: #A9A9A9;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+.search_box {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-icon {
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+}
+
+.search-icon svg {
+    fill: #555;
+}
+
+input[type="search"] {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+}
+
+input[type="search"]::placeholder {
+    color: #999;
+}
+
+input[type="search"]:focus {
+    border-color: #007bff;
+}
+
+.currency-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-width: 100px;
+    min-height: 60px;
+}
+
+.currency-img {
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+}
+
+.currency-info {
+    display: flex;
+    flex-direction: column;
+}
+
+div {
+    display: flex;
+}

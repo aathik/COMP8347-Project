@@ -1,0 +1,282 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navigation {
+    background-color: black;
+    width: 100%;
+    min-height: 10px;
+}
+
+.show_board {
+    display: flex;
+    width: 90%;
+    margin: 10px auto auto;
+
+}
+
+.main_board {
+    flex: 0 0 60%;
+    margin: 10px;
+}
+
+.sub_board {
+    flex: 1;
+    margin: 10px;
+    margin-bottom: 100px;
+}
+
+.container {
+    display: flex;
+    margin: 20px;
+}
+
+#exchangeRateChartContainer {
+    flex: 1;
+    height: auto;
+    margin: 20px;
+}
+
+.tabs {
+    flex: 0 0 40%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 20px;
+}
+
+.tab label {
+    padding: 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    text-align: center;
+    margin: 20px;
+}
+
+.tab .content {
+    display: none;
+    padding: 10px;
+    margin: 20px;
+}
+
+.amount-buttons button {
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.tab-content {
+    border-top: 1px solid #ccc;
+    margin-top: 20px;
+}
+
+#trading {
+    border: 2px solid grey;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+#trading > * {
+    margin: 15px 10px;
+}
+
+#trading > *:first-child {
+    margin-top: 10px;
+}
+
+#trading > *:last-child {
+    margin-bottom: 10px;
+}
+
+
+#choice {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.action {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0 10px;
+}
+
+#amount_box {
+    display: flex;
+    align-items: center;
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+    font-weight: bolder;
+}
+
+#input-amount {
+    border: none;
+    outline: none;
+    margin: 0 10px;
+    width: 80%;
+}
+
+#input-amount input {
+    border: none;
+    outline: none;
+}
+
+#dollar {
+    width: 5%;
+}
+
+#money-type {
+    width: 15%;
+}
+
+#order_history, #others_cryptos {
+    border: 2px solid grey;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+
+#others_cryptos > * {
+    margin: 15px;
+}
+
+#crypto_list_outer {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#crypto_list_price {
+
+}
+
+#wallet_show {
+    display: flex;
+    justify-content: space-between;
+}
+
+#wallet_show > div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.title, .value {
+    margin: 0;
+    padding-left: 0;
+    color: rgb(1, 3, 4);
+    text-align: left;
+}
+
+.title {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+}
+
+.value {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 600;
+}
+
+#instant-action {
+    display: flex;
+    align-items: center;
+    margin: 15px 10px;
+}
+
+#instant-button {
+    display: flex;
+    align-items: center;
+    background-color: #A9A9A9;
+    border: 1px solid #A9A9A9;
+    border-radius: 999px;
+    padding: 5px 20px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bolder;
+    color: black;
+}
+
+#instant-button:hover {
+    background-color: #999999;
+}
+
+#text {
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.radio-buttons {
+    display: flex;
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+    font-weight: bolder;
+}
+
+.radio-label {
+    margin-right: 20px;
+    position: relative;
+    padding-left: 25px;
+}
+
+.radio-label input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.radio-button {
+    padding: 5px 10px;
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    color: lightgrey;
+}
+
+.radio-label input[type="radio"]:checked + .radio-button {
+    background-color: lightgrey;
+    color: black;
+    flex-grow: 1;
+    text-align: center;
+}
+
+#crypto_list {
+    display: flex;
+    flex-direction: row;
+}
+
+#form2 input[type="checkbox"] {
+    border-radius: 15px;
+    float: left;
+    margin-right: 10px;
+}
+
+#form2 label {
+    display: block;
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+#button1, #button2 {
+    background-color: #A9A9A9;
+    border: 1px solid #A9A9A9;
+    border-radius: 999px;
+    padding: 5px 20px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bolder;
+    color: black;
+    margin-right: 10%;
+    margin-left: 10%;
+    flex: 1;
+}
